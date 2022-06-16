@@ -2,12 +2,16 @@ import { useState, useEffect } from "react";
 import { Die } from "./components/Die";
 import { nanoid } from "nanoid";
 import Confetti from "react-confetti";
+import { Score } from "./components/score";
 export function App() {
   const [dices, setDices] = useState(generateTenDices());
   const [tenzie, setTenzie] = useState(false);
+  const [turns, setTurns] = useState(0);
+  const [holds, setHolds] = useState(0);
 
   useEffect(() => {
     const heldDices = dices.filter((die) => die.isHeld === true);
+    setHolds(heldDices.length);
     const isAllTheSame = heldDices.every(
       (die) => die.value === heldDices[0].value
     );
@@ -35,6 +39,7 @@ export function App() {
   }
 
   function rollDice() {
+    setTurns((old) => ++old);
     setDices((oldDice) =>
       oldDice.map((die) => {
         return die.isHeld ? die : generateNewDie();
@@ -53,6 +58,7 @@ export function App() {
   function reset() {
     setDices(generateTenDices());
     setTenzie(false);
+    setTurns(0);
   }
   const dicesElements = dices.map((die) => (
     <Die
@@ -74,6 +80,7 @@ export function App() {
           current value between rolls
         </p>
       </div>
+      <Score turns={turns} holds={holds} />
       <div className="dies-wrapper">{dicesElements}</div>
       <button
         onClick={() => (tenzie ? reset() : rollDice())}

@@ -18,14 +18,31 @@ main.app {
   display: flex;
   align-items: center;
   flex-flow: column nowrap;
-  justify-content: center;
+  justify-content: space-evenly;
   align-items: center;
-  gap: 40px;
   padding: 20px;
   border-radius: 30px;
   background-color: #f5f5f5;
   max-width: 400px;
   height: 400px;
+}
+
+.score-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+.score-points {
+  margin: 0 5px;
+  display: inline-block;
+  color: #ffffff;
+  padding: 5px;
+  align-items: center;
+  font-size: 20px;
+  letter-spacing: 5px;
+  background-color: rgb(148, 148, 148);
+  border-radius: 5px;
 }
 
 .description {
@@ -60,16 +77,24 @@ main.app {
 
 .die-square {
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
   cursor: pointer;
   width: 100%;
   height: 100%;
-  font-weight: 700;
-  font-size: 1.5rem;
   background: #ffffff;
   box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.15);
   border-radius: 10px;
+}
+
+.dots {
+  line-height: 16px;
+  font-size: 30px;
+  width: 2ch;
+  word-break: break-all;
+  font-weight: 700;
+  text-align: center;
+  letter-spacing: 1.5px;
 }
 
 .dice-button {
@@ -86,4 +111,23 @@ main.app {
 
 .dice-button:active {
   box-shadow: inset 5px 5px 10px -3px rgba(0, 0, 0, 0.7);
+}
+
+@media screen and (max-width: 600px) {
+  main.app {
+    width: 100vw;
+    height: 100vh;
+  }
+
+  .dies-wrapper {
+    display: flex;
+    flex-flow: column wrap;
+    width: 100vw;
+    height: 325px;
+  }
+
+  .die-square {
+    width: 50px;
+    height: 50px;
+  }
 }

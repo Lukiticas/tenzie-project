@@ -5,7 +5,7 @@ export function Die({ id, value, isHeld, holdDice }) {
 
   return (
     <div style={style} onClick={holdDice} className="die-square">
-      {value}
+      <div className="dots">{"•".repeat(value)}</div>
     </div>
   );
 }
